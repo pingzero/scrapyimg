@@ -88,3 +88,10 @@ ITEM_PIPELINES = {
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+IMAGES_STORE='D:\myfile\python\scrapyimg\img'
+DOWNLOAD_DELAY = 0.25
+IMAGES_THUMBS = {#缩略图的尺寸，设置这个值就会产生缩略图
+    'small': (50, 50),
+    'big': (200, 200),
+}

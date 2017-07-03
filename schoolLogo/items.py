@@ -10,6 +10,7 @@ import scrapy
 
 class SchoollogoItem(scrapy.Item):
     # define the fields for your item here like:
-    school = scrapy.Field()
-    images_url = scrapy.Field()
+    # school = scrapy.Field()
+    image_urls = scrapy.Field()
+    image=scrapy.Field()
     pass
