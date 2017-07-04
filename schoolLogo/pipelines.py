@@ -1,34 +1,16 @@
-# -*- coding: utf-8 -*-
-
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 import scrapy
+from scrapy.contrib.pipeline.images import ImagesPipeline
 from scrapy.exceptions import DropItem
-from scrapy.pipelines.images import ImagesPipeline
 
 class SchoollogoPipeline(ImagesPipeline):
-	# def open_spider(self,spider):
-	# 	self.con=pymysql.Connect(user='root',password='root',db='test',charset='UTF8')
-	# 	self.cu=self.con.cursor()
-	# def process_item(self, item, spider):
-	# 	school=item['school']
-	# 	images=item['images_url']
-	# 	insert_sql='replace into school_logo (school,images_url) values(%s,%s)'
-	# 	value=[school,images]
-	# 	self.cu.execute(insert_sql,value)
-	# 	self.con.commit()
-	# 	return item
-	# def spider_close(self,spider):
-	# 	self.con.close()
-	def get_media_requests(self,item,info):
-		for image_url in item['image_urls']:
-			yield scrapy.Request(image_url)
-	def item_completed(self,results,item,info):
-		image_paths=[x['path'] for ok, x in results if ok]
-		if not image_path:
-			raise DropItem('Item contain no images')
-		item['image_paths']=image_paths
-		return item
 
+    def get_media_requests(self, item, info):
+        for image_url in item['image_urls']:
+            yield scrapy.Request(image_url)
+
+    def item_completed(self, results, item, info):
+        image_paths = [x['path'] for ok, x in results if ok]
+        if not image_paths:
+            raise DropItem("Item contains no images")
+        item['image_paths'] = image_paths
+        return item

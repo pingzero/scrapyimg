@@ -64,9 +64,7 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-   'schoolLogo.pipelines.SchoollogoPipeline': 300,
-}
+ITEM_PIPELINES = {'scrapy.contrib.pipeline.images.ImagesPipeline': 1}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -89,9 +87,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-IMAGES_STORE='D:\myfile\python\scrapyimg\img'
-DOWNLOAD_DELAY = 0.25
-IMAGES_THUMBS = {#缩略图的尺寸，设置这个值就会产生缩略图
-    'small': (50, 50),
-    'big': (200, 200),
-}
+IMAGES_STORE = 'D:\myfile\python\scrapyimg\img'
+# DOWNLOAD_DELAY = 0.25
+# IMAGES_THUMBS = {#缩略图的尺寸，设置这个值就会产生缩略图
+#     'small': (50, 50),
+#     'big': (200, 200),
+# }

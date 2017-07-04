@@ -3,7 +3,7 @@ import scrapy
 from ..items import SchoollogoItem
 
 from scrapy.crawler import CrawlerProcess
-
+import os
 class SchoollogoSpider(scrapy.Spider):
 	name="schoolLogo"
 	# url_list=[i for i in range(1,200)]
@@ -20,11 +20,14 @@ class SchoollogoSpider(scrapy.Spider):
 	# 		sl["school"]=i
 	# 		sl["images_url"]=j
 	# 		yield sl
-	start_urls=['http://jandan.net/ooxx']
+	start_urls=['http://www.llss.me/wp/']
 	def parse(self,response):
 		item=SchoollogoItem()
-		item['image_urls']=response.xpath('//img//@src').extract()
+		item['image_urls']=response.xpath(".//*[@id='content']/article/div/p/img/@src").extract()
 		yield item
-		new_url=new_url= response.xpath('//a[@class="previous-comment-page"]//@href').extract_first() #翻页
+		new_url= response.xpath(".//*[@id='wp_page_numbers']/ul/li/a/@href").extract() #翻页
 		if new_url:
-			yield scrapy.Request(new_url,callback=self.parse)
+			for url in new_url:
+				print(url)
+				yield scrapy.Request(url,callback=self.parse)
+			

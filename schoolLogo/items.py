@@ -13,4 +13,5 @@ class SchoollogoItem(scrapy.Item):
     # school = scrapy.Field()
     image_urls = scrapy.Field()
     image=scrapy.Field()
+    image_paths = scrapy.Field()
     pass
