@@ -88,7 +88,7 @@ ITEM_PIPELINES = {'scrapy.contrib.pipeline.images.ImagesPipeline': 1}
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 IMAGES_STORE = 'D:\myfile\python\scrapyimg\img'
-# DOWNLOAD_DELAY = 0.25
+DOWNLOAD_DELAY = 0.25
 # IMAGES_THUMBS = {#缩略图的尺寸，设置这个值就会产生缩略图
 #     'small': (50, 50),
 #     'big': (200, 200),

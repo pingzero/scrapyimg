@@ -25,9 +25,9 @@ class SchoollogoSpider(scrapy.Spider):
 		item=SchoollogoItem()
 		item['image_urls']=response.xpath(".//*[@id='content']/article/div/p/img/@src").extract()
 		yield item
-		new_url= response.xpath(".//*[@id='wp_page_numbers']/ul/li/a/@href").extract() #翻页
+		new_url= response.xpath(".//*[@id='wp_page_numbers']/ul/li[last()]/a/@href").extract()[0] #翻页
+		#new_url= response.xpath(".//*[@id='wp_page_numbers']/ul/li/a/@href").extract_last() #或者
 		if new_url:
-			for url in new_url:
-				print(url)
-				yield scrapy.Request(url,callback=self.parse)
+			print(new_url)
+			yield scrapy.Request(new_url,callback=self.parse)
 			
